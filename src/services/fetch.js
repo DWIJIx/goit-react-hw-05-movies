@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const BASE_URL = 'https://api.themoviedb.org/3/';
-const KEY = '7c6a11c2d8e8524ccfd41d8aedf2bd73';
+const KEY = '4d2e80e66c2c2de6980779cd2eee193d';
 
 async function getTrendingMovies() {
   try {
@@ -14,13 +14,13 @@ async function getTrendingMovies() {
   }
 }
 
-async function getMovies(value, p) {
+async function getMovies(text, page) {
   try {
     const response = await axios.get(`${BASE_URL}search/movie`, {
       params: {
         api_key: `${KEY}`,
-        query: `${value}`,
-        page: `${p}`,
+        query: `${text}`,
+        page: `${page}`,
       },
     });
     return response.data;
@@ -29,7 +29,7 @@ async function getMovies(value, p) {
   }
 }
 
-async function getMovieBiId(id) {
+async function getMovieById(id) {
   try {
     const response = await axios.get(
       `${BASE_URL}movie/${id}?api_key=${KEY}&language=en-US`
@@ -40,7 +40,7 @@ async function getMovieBiId(id) {
   }
 }
 
-async function getCastBiId(id) {
+async function getCastById(id) {
   try {
     const response = await axios.get(
       `${BASE_URL}movie/${id}/credits?api_key=${KEY}&language=en-US`
@@ -51,7 +51,7 @@ async function getCastBiId(id) {
   }
 }
 
-async function getReviewsBiId(id) {
+async function getReviewsById(id) {
   try {
     const response = await axios.get(
       `${BASE_URL}movie/${id}/reviews?api_key=${KEY}&language=en-US`
@@ -65,7 +65,7 @@ async function getReviewsBiId(id) {
 export {
   getTrendingMovies,
   getMovies,
-  getMovieBiId,
-  getCastBiId,
-  getReviewsBiId,
+  getMovieById,
+  getCastById,
+  getReviewsById,
 };
